@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Havana · pick a direction</title>
+<link rel="icon" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Manrope:wght@500;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: #0a0907; color: #f3ecdf; font: 500 16px/1.5 Manrope, system-ui, sans-serif; padding: clamp(24px, 5vw, 64px) clamp(16px, 4vw, 48px); }
+  header { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+  header img { width: 52px; height: 52px; border-radius: 14px; }
+  h1 { margin: 0; font: 900 clamp(2.4rem, 6vw, 4.4rem)/.9 "Big Shoulders Display", Impact, sans-serif; text-transform: uppercase; }
+  .lead { margin: 10px 0 34px; color: #a99f8c; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  a.card { position: relative; display: grid; grid-template-rows: auto 1fr; border-radius: 22px; overflow: hidden; text-decoration: none; color: inherit; border: 1px solid rgba(243,236,223,.14); background: #14110d; transition: transform .35s cubic-bezier(.22,1,.36,1), border-color .3s; }
+  a.card:hover { transform: translateY(-6px); border-color: #e2ad45; }
+  .thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #000; }
+  .thumb iframe { position: absolute; left: 0; top: 0; width: 400%; height: 400%; transform: scale(.25); transform-origin: 0 0; border: 0; pointer-events: none; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .body { padding: 18px 20px 22px; }
+  .tag { font: 800 .72rem Manrope; letter-spacing: .2em; text-transform: uppercase; color: #e2ad45; }
+  h2 { margin: 6px 0 6px; font: 900 2rem/1 "Big Shoulders Display", Impact, sans-serif; text-transform: uppercase; }
+  p { margin: 0; color: #c9bfac; }
+  .back { display: inline-block; margin-top: 34px; color: #a99f8c; }
+</style>
+</head>
+<body>
+<header><img src="../brand/havana-mark-256.png" alt=""><h1>Havana: three directions</h1></header>
+<p class="lead">Three ways to tell Havana's story on the web. Open each one, scroll through it, then pick the one to build into the full site.</p>
+<div class="grid">
+  <a class="card" href="a/">
+    <div class="thumb"><iframe src="a/" title="Preview A" loading="lazy" tabindex="-1"></iframe></div>
+    <div class="body"><span class="tag">A · 3D</span><h2>Gold Room</h2><p>Black and metallic gold, studio light. A white PS5 controller, Havana cup, 8-ball and football turn in 3D as you scroll. Premium product-launch feel.</p></div>
+  </a>
+  <a class="card" href="b/">
+    <div class="thumb"><iframe src="b/" title="Preview B" loading="lazy" tabindex="-1"></iframe></div>
+    <div class="body"><span class="tag">B · 3D</span><h2>Bold &amp; loud</h2><p>The same 3D heroes on bright colour blocks, with outlined giant type and chunky shadows. Playful and punchy.</p></div>
+  </a>
+  <a class="card" href="c/">
+    <div class="thumb"><img src="c/fk1.webp" alt=""></div>
+    <div class="body"><span class="tag">C · Motion</span><h2>Matchday</h2><p>Photo-led, like a sports magazine. A free kick told in full-screen photos that open as you scroll, ending on a gold GOAL.</p></div>
+  </a>
+</div>
+<a class="back" href="../">← Current site</a>
+</body>
+</html>

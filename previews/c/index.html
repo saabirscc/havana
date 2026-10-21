@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Havana · Preview C · Matchday</title>
+<meta name="theme-color" content="#0a0907">
+<link rel="icon" href="../../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;600;700;800&display=swap">
+<link rel="preload" as="image" href="fk1.webp" fetchpriority="high">
+<style>
+/* Preview C · Matchday editorial: photo-led, magazine type, scroll-driven reveals */
+:root { --bg: #0a0907; --fg: #f3ecdf; --muted: #a99f8c; --gold: #e2ad45; --gut: clamp(18px, 4vw, 56px);
+  --display: "Big Shoulders Display", Impact, sans-serif; --serif: "Instrument Serif", Georgia, serif; --ui: "Manrope", system-ui, sans-serif; }
+* { box-sizing: border-box; }
+html.lenis, html.lenis body { height: auto; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 16px/1.6 var(--ui); overflow-x: clip; }
+a { color: inherit; }
+.nav { position: fixed; z-index: 20; inset: 0 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 18px var(--gut); color: #fff; text-shadow: 0 2px 16px rgba(0,0,0,.55); background: linear-gradient(180deg, rgba(10,9,7,.55), transparent); }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font: 900 1.5rem/1 var(--display); letter-spacing: .06em; text-transform: uppercase; }
+.brand img { width: 40px; height: 40px; border-radius: 10px; }
+.nav a.book { font: 800 .82rem var(--ui); letter-spacing: .16em; text-transform: uppercase; text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 3px; }
+
+/* hero */
+.hero { position: relative; height: 100svh; min-height: 620px; overflow: hidden; }
+.hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 70%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,9,7,.15) 0%, rgba(10,9,7,0) 40%, rgba(10,9,7,.85) 100%); }
+.hero-text { position: absolute; z-index: 2; left: var(--gut); right: var(--gut); bottom: clamp(24px, 6vh, 60px); }
+.issue { margin: 0 0 10px; font: 800 .74rem var(--ui); letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
+.hero h1 { margin: 0; font: 900 clamp(5.5rem, 21vw, 20rem)/.78 var(--display); text-transform: uppercase; letter-spacing: -.01em; overflow: hidden; }
+.hero h1 span { display: inline-block; }
+.hero .sub { margin: 14px 0 0; max-width: 40ch; font: 400 clamp(1.3rem, 2.4vw, 2rem)/1.15 var(--serif); font-style: italic; color: #efe6d4; }
+
+/* chapters: full-screen photos that open up as you scroll */
+.chap { position: relative; height: 200vh; }
+.chap .pin { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; place-items: center; }
+.chap figure { position: absolute; inset: 0; margin: 0; clip-path: inset(18% 22% 18% 22% round 28px); will-change: clip-path; }
+.chap img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.25); will-change: transform; }
+.chap figure::after { content: ""; position: absolute; inset: 0; background: radial-gradient(80% 70% at 50% 50%, transparent 40%, rgba(10,9,7,.55)); }
+.chap .label { position: absolute; z-index: 2; left: var(--gut); bottom: clamp(24px, 7vh, 70px); max-width: 760px; }
+.chap .num { display: block; font: 800 .74rem var(--ui); letter-spacing: .24em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.chap h2 { margin: 0; font: 900 clamp(3.6rem, 11vw, 10rem)/.82 var(--display); text-transform: uppercase; overflow: hidden; }
+.chap h2 span { display: inline-block; }
+.chap p { margin: 12px 0 0; font: 400 clamp(1.15rem, 2vw, 1.6rem)/1.2 var(--serif); font-style: italic; color: #efe6d4; max-width: 34ch; }
+.chap .stamp { position: absolute; z-index: 2; right: var(--gut); top: 50%; transform: translateY(-50%) rotate(90deg); transform-origin: right center; font: 800 .7rem var(--ui); letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
+
+/* the big reveal */
+.goal { position: relative; height: 220vh; }
+.goal .pin { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; place-items: center; }
+.goal img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.goal .veil { position: absolute; inset: 0; background: var(--bg); opacity: 0; }
+.goal .word { position: relative; z-index: 2; margin: 0; text-align: center; font: 900 clamp(6rem, 26vw, 24rem)/.8 var(--display); text-transform: uppercase;
+  background: linear-gradient(180deg, #fbe3a0, #e2ad45 50%, #9b6a1f); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.goal .tag { position: relative; z-index: 2; margin: 18px 0 0; text-align: center; font: 400 clamp(1.2rem, 2.4vw, 2rem)/1.2 var(--serif); font-style: italic; opacity: 0; }
+
+/* editorial grid */
+.paper { padding: clamp(90px, 12vw, 160px) 0; }
+.wrap { width: min(1280px, 100%); margin: 0 auto; padding: 0 var(--gut); }
+.paper h3 { margin: 0 0 40px; font: 400 clamp(2.2rem, 5vw, 4.4rem)/1.02 var(--serif); max-width: 18ch; }
+.paper h3 em { color: var(--gold); }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid rgba(243,236,223,.18); }
+.grid article { padding: 26px 22px 30px 0; border-right: 1px solid rgba(243,236,223,.12); }
+.grid article:last-child { border-right: 0; }
+.grid article + article { padding-left: 22px; }
+.grid .n { font: 800 .72rem var(--ui); letter-spacing: .22em; color: var(--gold); }
+.grid h4 { margin: 10px 0 8px; font: 900 2.1rem/1 var(--display); text-transform: uppercase; }
+.grid p { margin: 0; color: var(--muted); }
+@media (max-width: 860px) { .grid { grid-template-columns: 1fr 1fr; } .grid article:nth-child(2) { border-right: 0; } .grid article:nth-child(3) { padding-left: 0; } }
+.visit { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 24px; margin-top: 70px; padding-top: 30px; border-top: 1px solid rgba(243,236,223,.18); }
+.visit p { margin: 0; font: 400 1.5rem/1.3 var(--serif); }
+.btn { display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border-radius: 999px; background: var(--gold); color: #140e05; font: 800 .95rem var(--ui); text-decoration: none; }
+.foot { padding: 26px var(--gut); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--muted); font: 600 .85rem var(--ui); border-top: 1px solid rgba(243,236,223,.12); }
+.foot a { text-decoration: none; }
+.preview-tag { position: fixed; z-index: 40; right: 14px; bottom: 14px; padding: 7px 14px; border-radius: 999px; background: rgba(0,0,0,.6); border: 1px solid rgba(240,205,125,.3); color: #f0cd7d; font: 800 .7rem var(--ui); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+@media (prefers-reduced-motion: reduce) { .chap figure { clip-path: none; } .chap img { transform: none; } }
+</style>
+  <script type="module" crossorigin src="/havana/assets/c-CV7G0fSY.js"></script>
+  <link rel="modulepreload" crossorigin href="/havana/assets/brand-G7nUz1Vp.js">
+  <link rel="modulepreload" crossorigin href="/havana/assets/motion-Dls_cRqU.js">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#top"><img src="../../brand/havana-mark-256.png" alt="">Havana</a>
+  <a class="book" data-wa target="_blank" rel="noopener">Book a station</a>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <img src="fk1.webp" alt="A Havana player stands over a free kick, the wall and keeper waiting">
+    <div class="hero-text">
+      <p class="issue">Matchday · Zobe, Mogadishu</p>
+      <h1><span>Havana</span></h1>
+      <p class="sub">Every free kick tells a story. Ours ends in the top corner.</p>
+    </div>
+  </section>
+
+  <section class="chap"><div class="pin">
+    <figure><img src="fk2.webp" alt="The strike: a gold boot meets the ball"></figure>
+    <div class="label"><span class="num">I · The strike</span><h2><span>Plant.</span> <span>Strike.</span></h2><p>One touch, all the weight behind it.</p></div>
+    <span class="stamp">Havana · PS5 · FC 26</span>
+  </div></section>
+
+  <section class="chap"><div class="pin">
+    <figure><img src="pass2.webp" alt="The ball curls over a wall of jumping defenders"></figure>
+    <div class="label"><span class="num">II · The wall</span><h2><span>Over</span> <span>them.</span></h2><p>Four men jump. The ball doesn't care.</p></div>
+    <span class="stamp">Havana · Pool · Cafe</span>
+  </div></section>
+
+  <section class="chap"><div class="pin">
+    <figure><img src="pass4.webp" alt="The goalkeeper dives at full stretch and misses"></figure>
+    <div class="label"><span class="num">III · The keeper</span><h2><span>Past</span> <span>him.</span></h2><p>Fingertips, an inch short.</p></div>
+    <span class="stamp">Friday cup · 8 pm</span>
+  </div></section>
+
+  <section class="goal"><div class="pin">
+    <img src="shot5.webp" alt="The ball hits the back of the net">
+    <div class="veil"></div>
+    <div>
+      <h2 class="word">Goal.</h2>
+      <p class="tag">Now it's your turn. Come play at Havana.</p>
+    </div>
+  </div></section>
+
+  <section class="paper">
+    <div class="wrap">
+      <h3>A <em>cafe</em> and a stadium, under one roof in Zobe.</h3>
+      <div class="grid">
+        <article><span class="n">01</span><h4>Play</h4><p>PS5 on 4K screens, FC 26 on every station, a VIP room for six.</p></article>
+        <article><span class="n">02</span><h4>Sip</h4><p>Coffee, tea, canjeero from the evening, sweets between matches.</p></article>
+        <article><span class="n">03</span><h4>Break</h4><p>Pool tables and pool nights when your thumbs need a rest.</p></article>
+        <article><span class="n">04</span><h4>Score</h4><p>The Friday FC cup at 8 pm. Final on the big screen.</p></article>
+      </div>
+      <div class="visit">
+        <p>Zobe, next to the Safari Hotel parking lot.<br>Every day, 3 pm to 3 am.</p>
+        <a class="btn" data-wa target="_blank" rel="noopener">Book on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot"><span>© Havana Entertainment</span><span><a href="../../previews/">All previews</a> · <a href="../../previews/a/">A</a> · <a href="../../previews/b/">B</a></span></footer>
+<a class="preview-tag" href="../../previews/">Preview C · Matchday</a>
+
+</body>
+</html>

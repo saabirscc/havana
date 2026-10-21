@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Havana · Reel</title>
+<meta name="theme-color" content="#f6f4ef">
+<link rel="icon" href="../../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Manrope:wght@600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: #f6f4ef; color: #121212; font: 600 16px/1.5 Manrope, system-ui, sans-serif; padding: 16px; }
+  main { width: min(420px, 100%); display: grid; gap: 16px; }
+  header { display: flex; align-items: center; gap: 12px; }
+  header img { width: 40px; height: 40px; border-radius: 11px; }
+  h1 { margin: 0; font: 900 2rem/1 "Big Shoulders Display", Impact, sans-serif; text-transform: uppercase; letter-spacing: .03em; }
+  h1 mark { background: linear-gradient(180deg, transparent 55%, #e2ad45 55%, #e2ad45 92%, transparent 92%); color: inherit; padding: 0 .06em; }
+  .frame { position: relative; border-radius: 26px; overflow: hidden; background: #000; aspect-ratio: 9 / 16; width: min(100%, calc(80svh * 9 / 16)); margin: 0 auto; box-shadow: 0 30px 80px -30px rgba(0,0,0,.45), 0 0 0 1px rgba(0,0,0,.06); }
+  video { width: 100%; height: 100%; display: block; object-fit: contain; }
+  .play { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.12); border: 0; cursor: pointer; transition: opacity .3s; }
+  .play i { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(180deg, #fbe3a0, #e2ad45 50%, #9b6a1f); box-shadow: 0 10px 40px -10px rgba(226,173,69,.8); }
+  .play i::after { content: ""; margin-left: 6px; border-left: 24px solid #1a1206; border-top: 15px solid transparent; border-bottom: 15px solid transparent; }
+  .playing .play { opacity: 0; pointer-events: none; }
+  p { margin: 0; color: #5f5a50; font-size: .9rem; text-align: center; }
+  a { color: #9b6a1f; }
+</style>
+</head>
+<body>
+<main>
+  <header><img src="../../brand/havana-mark-256.png" alt=""><h1>Havana · <mark>Reel</mark></h1></header>
+  <div class="frame" id="frame">
+    <video id="v" src="../havana-reel.mp4" poster="../reel-poster.jpg" playsinline preload="metadata"></video>
+    <button class="play" id="p" type="button" aria-label="Play the reel with sound"><i></i></button>
+  </div>
+  <p>15 seconds, with sound: the website and the app. <a href="../../previews/">Website</a> · <a href="../../app/">App</a> · <a href="../havana-reel.mp4" download>Download</a></p>
+</main>
+<script>
+  const v = document.getElementById('v'), f = document.getElementById('frame');
+  document.getElementById('p').addEventListener('click', () => { v.controls = true; v.play(); });
+  v.addEventListener('play', () => f.classList.add('playing'));
+  v.addEventListener('pause', () => f.classList.remove('playing'));
+</script>
+</body>
+</html>

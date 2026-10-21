@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Havana · Matchday film</title>
+<meta name="theme-color" content="#050403">
+<link rel="icon" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Manrope:wght@600;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: radial-gradient(70% 60% at 50% 40%, #16110a, #050403 75%); color: #f4ecdc; font: 600 16px/1.5 Manrope, system-ui, sans-serif; padding: 18px; }
+  main { width: min(1100px, 100%); display: grid; gap: 18px; }
+  header { display: flex; align-items: center; gap: 12px; }
+  header img { width: 44px; height: 44px; border-radius: 12px; }
+  h1 { margin: 0; font: 900 clamp(1.8rem, 4vw, 2.6rem)/1 "Big Shoulders Display", Impact, sans-serif; text-transform: uppercase; letter-spacing: .04em; }
+  header span { margin-left: auto; font: 800 .72rem Manrope; letter-spacing: .2em; text-transform: uppercase; color: #e2ad45; }
+  .frame { position: relative; border-radius: 22px; overflow: hidden; border: 1px solid rgba(240,205,125,.22); box-shadow: 0 40px 120px -40px rgba(226,173,69,.45); background: #000; aspect-ratio: 16 / 9; }
+  video { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .play { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.25); border: 0; cursor: pointer; transition: opacity .3s; }
+  .play i { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(180deg, #fbe3a0, #e2ad45 50%, #9b6a1f); box-shadow: 0 10px 40px -10px rgba(226,173,69,.8); }
+  .play i::after { content: ""; margin-left: 6px; border-left: 24px solid #1a1206; border-top: 15px solid transparent; border-bottom: 15px solid transparent; }
+  .playing .play { opacity: 0; pointer-events: none; }
+  p { margin: 0; color: #b3a68e; font-size: .92rem; }
+  a { color: #e2ad45; }
+</style>
+</head>
+<body>
+<main>
+  <header><img src="../brand/havana-mark-256.png" alt=""><h1>Havana · Matchday</h1><span>AI film</span></header>
+  <div class="frame" id="frame">
+    <video id="v" src="havana-wan.mp4" poster="poster.jpg" playsinline muted loop preload="metadata"></video>
+    <button class="play" id="p" type="button" aria-label="Play the film"><i></i></button>
+  </div>
+  <p>23 seconds, generated free with the open-source Wan 2.1 video model on Kaggle. <a href="../previews/">See the Havana site previews →</a></p>
+</main>
+<script>
+  const v = document.getElementById('v'), f = document.getElementById('frame');
+  const play = () => { v.controls = true; v.play(); f.classList.add('playing'); };
+  document.getElementById('p').addEventListener('click', play);
+  v.addEventListener('pause', () => f.classList.remove('playing'));
+  v.addEventListener('play', () => f.classList.add('playing'));
+  // start muted on its own when it scrolls into view (the film is silent anyway)
+  v.play().then(() => f.classList.add('playing'), () => {});
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Havana app · prototype</title>
+<meta name="description" content="Clickable prototype of the Havana Entertainment customer app: book a PS5 station, order to your seat, wallet, stamp card and the Friday FC 26 cup.">
+<meta name="theme-color" content="#0b0806">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Havana">
+<link rel="icon" href="/havana/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/havana/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap">
+  <script type="module" crossorigin src="/havana/assets/app-DgfLyp2l.js"></script>
+  <link rel="modulepreload" crossorigin href="/havana/assets/brand-G7nUz1Vp.js">
+  <link rel="stylesheet" crossorigin href="/havana/assets/app-DS3AGAfj.css">
+</head>
+<body>
+<div class="stage-bg" aria-hidden="true"></div>
+<div class="stage">
+  <aside class="side" id="side" aria-label="About this prototype"></aside>
+  <div class="slot" id="slot">
+    <div class="device" id="device">
+      <span class="hwb hw-act" aria-hidden="true"></span><span class="hwb hw-vu" aria-hidden="true"></span><span class="hwb hw-vd" aria-hidden="true"></span><span class="hwb hw-pw" aria-hidden="true"></span>
+      <main class="app" id="app" aria-label="Havana app"></main>
+      <span class="island" aria-hidden="true"></span>
+      <span class="homebar" aria-hidden="true"></span>
+    </div>
+  </div>
+</div>
+<script>
+/* Desktop: show the phone at its real size (390 × 844, an iPhone 15) and scale the whole device to fit the window. */
+(function () {
+  var fit = function () {
+    var s = 1, w = innerWidth, h = innerHeight;
+    if (w > 500) s = Math.min(1, (h - 32) / 868, (w - (w > 820 ? 386 : 40)) / 414);
+    document.documentElement.style.setProperty('--s', Math.max(0.4, s).toFixed(4));
+  };
+  fit(); addEventListener('resize', fit);
+})();
+</script>
+</body>
+</html>
